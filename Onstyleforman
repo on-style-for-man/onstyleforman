@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>On Style For Man — Moda Masculina</title>
+  <meta name="description" content="On Style For Man — roupas masculinas confortáveis e estilosas. Vista On Style for Man e ative seu modo ON no estilo." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="brand">On Style For Man</h1>
+      <nav class="nav">
+        <a href="#colecao">Coleção</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+        <button id="cart-btn">Carrinho (<span id="cart-count">0</span>)</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <h2>Vista <strong>On Style for Man</strong></h2>
+          <p>Peças masculinas com estilo, conforto e atitude. Nova coleção disponível.</p>
+          <a href="#colecao" class="btn-primary">Ver Coleção</a>
+        </div>
+        <img src="assets/hero-placeholder.jpg" alt="Roupas masculinas" class="hero-img" />
+      </div>
+    </section>
+
+    <!-- COLEÇÃO / PRODUTOS -->
+    <section id="colecao" class="colecao container">
+      <h3>Nossa coleção</h3>
+      <div id="products-grid" class="grid">
+        <!-- Produtos serão injetados via JS -->
+      </div>
+    </section>
+
+    <!-- SOBRE -->
+    <section id="sobre" class="container about">
+      <h3>Sobre a On Style For Man</h3>
+      <p>Somos uma loja masculina dedicada a oferecer peças essenciais: calças, bermudas cargo, blusões, camisetas e alfaiataria casual. Buscamos qualidade, conforto e designs que realçam o estilo do dia a dia.</p>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="container contato">
+      <h3>Contato</h3>
+      <form id="contact-form">
+        <label>Nome
+          <input type="text" name="name" required />
+        </label>
+        <label>E-mail
+          <input type="email" name="email" required />
+        </label>
+        <label>Mensagem
+          <textarea name="message" required></textarea>
+        </label>
+        <button type="submit" class="btn-primary">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- MODAL PRODUTO -->
+  <div id="product-modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <div class="modal-body" id="modal-body">
+        <!-- Conteúdo via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR CARRINHO -->
+  <aside id="cart-panel" class="cart-panel hidden">
+    <div class="cart-header">
+      <h4>Seu Carrinho</h4>
+      <button id="close-cart">&times;</button>
+    </div>
+    <div id="cart-items"></div>
+    <div class="cart-footer">
+      <div class="total">Total: R$ <span id="cart-total">0.00</span></div>
+      <button id="checkout-btn" class="btn-primary">Finalizar Compra</button>
+    </div>
+  </aside>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> On Style For Man — Todos os direitos reservados.</p>
+      <p>Siga-nos: <a href="#">Instagram</a> • <a href="#">Facebook</a></p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+:root{
+  --verde-militar: #4b5b3b;
+  --azul-marinho: #0b2b4a;
+  --vermelho: #c0392b;
+  --rosa: #f28ab2;
+  --off: #f7f3ee;
+  --marrom: #6b4b3a;
+  --bege: #d6c9b8;
+  --text: #222;
+  --muted: #666;
+}
+
+*{box-sizing:border-box}
+body{font-family:Inter, system-ui, -apple-system, "Helvetica Neue", Arial; margin:0; color:var(--text); background:var(--off); -webkit-font-smoothing:antialiased;}
+.container{max-width:1100px;margin:0 auto;padding:1rem;}
+
+.site-header{background:var(--azul-marinho); color:var(--off);}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:0.8rem 1rem;}
+.brand{margin:0;font-size:1.2rem;font-weight:700;}
+.nav a{color:var(--off);margin-right:1rem;text-decoration:none}
+.nav button{background:transparent;border:1px solid var(--off);color:var(--off);padding:0.4rem 0.6rem;border-radius:6px}
+
+.hero{padding:2rem 0;background:linear-gradient(90deg, rgba(11,43,74,0.95), rgba(75,91,59,0.85));color:var(--off)}
+.hero-inner{display:flex;gap:2rem;align-items:center;justify-content:space-between}
+.hero h2{font-size:2rem;margin:0}
+.hero p{margin:0.5rem 0 1rem}
+.hero-img{width:40%;max-width:360px;border-radius:8px;object-fit:cover}
+
+.btn-primary{background:var(--bege);color:var(--azul-marinho); border:none;padding:0.7rem 1rem;border-radius:8px;cursor:pointer;text-decoration:none;display:inline-block}
+
+.colecao{padding:2rem 0}
+.colecao h3{margin-bottom:1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.card{background:var(--off);border-radius:8px;padding:0.6rem;box-shadow:0 2px 6px rgba(0,0,0,0.06)}
+.card img{width:100%;height:220px;object-fit:cover;border-radius:6px}
+.card .title{font-weight:600;margin:0.5rem 0}
+.card .price{color:var(--vermelho);font-weight:700}
+.card .actions{display:flex;gap:0.5rem;margin-top:0.6rem}
+
+.about, .contato{padding:1.5rem 0;background:transparent}
+
+label{display:block;margin-bottom:0.7rem}
+input, textarea{width:100%;padding:0.6rem;border:1px solid #ddd;border-radius:6px}
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:40}
+.hidden{display:none}
+.modal-content{background:var(--off);border-radius:8px;max-width:900px;width:95%;padding:1rem;position:relative}
+.modal-close{position:absolute;right:10px;top:10px;background:transparent;border:0;font-size:1.6rem}
+
+.cart-panel{position:fixed;right:0;top:0;height:100%;width:360px;background:white;box-shadow:-4px 0 12px rgba(0,0,0,0.12);z-index:50;padding:1rem;display:flex;flex-direction:column;gap:1rem}
+.cart-header{display:flex;justify-content:space-between;align-items:center}
+.cart-footer{margin-top:auto}
+.cart-item{display:flex;gap:0.6rem;align-items:center;padding:0.6rem 0;border-bottom:1px solid #eee}
+.cart-item img{width:64px;height:64px;object-fit:cover;border-radius:6px}
+.total{font-weight:700;margin-bottom:0.6rem}
+
+.site-footer{padding:1rem 0;background:var(--azul-marinho);color:var(--off);margin-top:2rem}
+@media(max-width:800px){
+  .hero-inner{flex-direction:column;text-align:center}
+  .hero-img{width:90%}
+}
+// Produtos de exemplo — edite / adicione conforme precisar
+const products = [
+  {
+    id: "p1",
+    title: "Camiseta Oversize",
+    price: 79.90,
+    img: "assets/prod1.jpg",
+    desc: "Camiseta oversize confortável, algodão premium."
+  },
+  {
+    id: "p2",
+    title: "Bermuda Cargo",
+    price: 129.90,
+    img: "assets/prod2.jpg",
+    desc: "Bermuda cargo com bolsos utilitários."
+  },
+  {
+    id: "p3",
+    title: "Calça Moletom",
+    price: 149.90,
+    img: "assets/prod3.jpg",
+    desc: "Calça moletom slim, elástico na cintura."
+  },
+  {
+    id: "p4",
+    title: "Blusão Alfaiataria Casual",
+    price: 199.90,
+    img: "assets/prod4.jpg",
+    desc: "Blusão inspirado em alfaiataria com caimento moderno."
+  }
+];
+
+const productsGrid = document.getElementById('products-grid');
+const cartBtn = document.getElementById('cart-btn');
+const cartCount = document.getElementById('cart-count');
+const cartPanel = document.getElementById('cart-panel');
+const cartItemsEl = document.getElementById('cart-items');
+const cartTotalEl = document.getElementById('cart-total');
+const checkoutBtn = document.getElementById('checkout-btn');
+const yearEl = document.getElementById('year');
+
+let cart = JSON.parse(localStorage.getItem('cart') || "[]");
+
+function saveCart(){ localStorage.setItem('cart', JSON.stringify(cart)); updateCartUI(); }
+function updateCartUI(){
+  cartCount.textContent = cart.reduce((s,i)=>s+i.qty,0);
+  cartItemsEl.innerHTML = '';
+  let total = 0;
+  if(cart.length===0) cartItemsEl.innerHTML = '<p>Seu carrinho está vazio.</p>';
+  cart.forEach(item=>{
+    total += item.qty * item.price;
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <img src="${item.img}" alt="${item.title}" />
+      <div style="flex:1">
+        <div style="font-weight:600">${item.title}</div>
+        <div>R$ ${item.price.toFixed(2)} x ${item.qty}</div>
+        <div style="margin-top:6px">
+          <button data-id="${item.id}" class="dec">-</button>
+          <button data-id="${item.id}" class="inc">+</button>
+          <button data-id="${item.id}" class="rm">Remover</button>
+        </div>
+      </div>
+    `;
+    cartItemsEl.appendChild(div);
+  });
+  cartTotalEl.textContent = total.toFixed(2);
+  cartItemsEl.querySelectorAll('.inc').forEach(b=>b.onclick=e=>{ changeQty(e.target.dataset.id,1); });
+  cartItemsEl.querySelectorAll('.dec').forEach(b=>b.onclick=e=>{ changeQty(e.target.dataset.id,-1); });
+  cartItemsEl.querySelectorAll('.rm').forEach(b=>b.onclick=e=>{ removeItem(e.target.dataset.id); });
+}
+
+function changeQty(id, delta){
+  const idx = cart.findIndex(c=>c.id===id);
+  if(idx===-1) return;
+  cart[idx].qty += delta;
+  if(cart[idx].qty <= 0) cart.splice(idx,1);
+  saveCart();
+}
+
+function removeItem(id){ cart = cart.filter(i=>i.id!==id); saveCart(); }
+
+function addToCart(product, qty=1){
+  const exists = cart.find(i=>i.id===product.id);
+  if(exists) exists.qty += qty;
+  else cart.push({...product, qty});
+  saveCart();
+  alert(`${product.title} adicionado ao carrinho.`);
+}
+
+// Monta grid
+function renderProducts(){
+  productsGrid.innerHTML = '';
+  products.forEach(p=>{
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <img src="${p.img}" alt="${p.title}" />
+      <div class="title">${p.title}</div>
+      <div class="price">R$ ${p.price.toFixed(2)}</div>
+      <div class="actions">
+        <button class="btn-primary view" data-id="${p.id}">Ver</button>
+        <button class="btn-primary add" data-id="${p.id}">Comprar</button>
+      </div>
+    `;
+    productsGrid.appendChild(card);
+  });
+
+  document.querySelectorAll('.add').forEach(btn=>{
+    btn.onclick = (e)=>{
+      const id = e.target.dataset.id;
+      const p = products.find(x=>x.id===id);
+      addToCart(p,1);
+    }
+  });
+
+  document.querySelectorAll('.view').forEach(btn=>{
+    btn.onclick = (e)=>{
+      const id = e.target.dataset.id;
+      const p = products.find(x=>x.id===id);
+      openModal(p);
+    }
+  });
+}
+
+// Modal produto
+const modal = document.getElementById('product-modal');
+const modalBody = document.getElementById('modal-body');
+document.getElementById('modal-close').onclick = closeModal;
+function openModal(p){
+  modalBody.innerHTML = `
+    <div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <img src="${p.img}" alt="${p.title}" style="width:320px;height:320px;object-fit:cover;border-radius:6px" />
+      <div style="flex:1">
+        <h3>${p.title}</h3>
+        <p style="color:#666">${p.desc}</p>
+        <p style="font-weight:700">R$ ${p.price.toFixed(2)}</p>
+        <div style="display:flex;gap:0.6rem;margin-top:1rem">
+          <button id="modal-add" class="btn-primary">Adicionar ao carrinho</button>
+        </div>
+      </div>
+    </div>
+  `;
+  document.getElementById('modal-add').onclick = ()=>{ addToCart(p,1); closeModal(); };
+  modal.classList.remove('hidden');
+}
+function closeModal(){ modal.classList.add('hidden'); }
+
+// Carrinho painel
+cartBtn.onclick = ()=>{ cartPanel.classList.toggle('hidden'); updateCartUI(); }
+document.getElementById('close-cart').onclick = ()=> cartPanel.classList.add('hidden');
+
+checkoutBtn.onclick = ()=>{
+  if(cart.length===0){ alert("Carrinho vazio."); return; }
+  // Simulação: aqui você pode integrar com pagamento real
+  alert("Pedido simulado. Implemente gateway de pagamento para finalizar.");
+  cart = []; saveCart();
+}
+
+// Contact form (simples)
+document.getElementById('contact-form').onsubmit = (e)=>{
+  e.preventDefault();
+  alert("Mensagem enviada! Em breve entraremos em contato.");
+  e.target.reset();
+};
+
+document.addEventListener('click', (e)=>{
+  if(e.target === modal) closeModal();
+});
+
+yearEl.textContent = new Date().getFullYear();
+renderProducts();
+updateCartUI();
